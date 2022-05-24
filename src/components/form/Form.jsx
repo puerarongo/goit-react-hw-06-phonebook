@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { contactsAdd } from 'redux/actions/contacts-actions';
+//import PropTypes from 'prop-types';
 import styles from './Form.module.css';
 
-const Form = ({ submit }) => {
+const Form = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  //const itemsContact = useSelector(state => state.contacts.items);
+  const dispatch = useDispatch();
 
   // todo Function
   const inputHandler = e => {
@@ -23,7 +27,7 @@ const Form = ({ submit }) => {
   const submitHandler = e => {
     e.preventDefault();
 
-    submit(name, number);
+    dispatch(contactsAdd(name, number));
     setName('');
     setNumber('');
   };
@@ -65,8 +69,8 @@ const Form = ({ submit }) => {
   );
 };
 
-Form.propTypes = {
-  submit: PropTypes.func.isRequired,
-};
+//Form.propTypes = {
+//  submit: PropTypes.func.isRequired,
+//};
 
 export default Form;

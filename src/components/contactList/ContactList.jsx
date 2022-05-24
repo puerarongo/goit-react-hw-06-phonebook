@@ -1,12 +1,24 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import { contactsDelete } from 'redux/actions/contacts-actions';
+//import PropTypes from 'prop-types';
 import styles from './ContactList.module.css';
 
-const ContactList = ({ contacts, deleteById }) => {
+const ContactList = () => {
+  const dispatch = useDispatch;
+  const itemsContact = useSelector(state => state.contacts.items);
+  const filterContact = useSelector(state => state.contacts.filter);
+  const dataContacts = itemsContact.filter(({ name }) =>
+    name.toLowerCase().includes(filterContact.toLowerCase())
+  );
+
+  const deleteHandler = id => {
+    dispatch(contactsDelete(id));
+  };
   return (
     <div className={styles.container}>
       <ul>
-        {contacts.map(({ id, name, number }) => {
+        {dataContacts.map(({ id, name, number }) => {
           return (
             <li key={id} className={styles.contact}>
               <span>
@@ -15,7 +27,7 @@ const ContactList = ({ contacts, deleteById }) => {
               <button
                 className={styles.button__delete}
                 type="button"
-                onClick={() => deleteById(id)}
+                onClick={() => deleteHandler(id)}
               >
                 Delete
               </button>
@@ -27,15 +39,15 @@ const ContactList = ({ contacts, deleteById }) => {
   );
 };
 
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  deleteById: PropTypes.func.isRequired,
-};
+//ContactList.propTypes = {
+//  contacts: PropTypes.arrayOf(
+//    PropTypes.shape({
+//      id: PropTypes.string.isRequired,
+//      name: PropTypes.string.isRequired,
+//      number: PropTypes.string.isRequired,
+//    })
+//  ).isRequired,
+//  deleteById: PropTypes.func.isRequired,
+//};
 
 export default ContactList;

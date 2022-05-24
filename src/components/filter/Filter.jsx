@@ -1,8 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { filtration } from 'redux/actions/contacts-actions';
+//import PropTypes from 'prop-types';
 import styles from './Filter.module.css';
 
-const Filter = ({ filter, change }) => {
+const Filter = () => {
+  const [filter, setFilter] = useState('');
+  const dispatch = useDispatch();
+
+  const inputHandler = e => {
+    setFilter(e.currentTarget.value);
+    dispatch(filtration(e.currentTarget.value));
+  };
+
   return (
     <div className={styles.container}>
       <label>
@@ -12,16 +22,16 @@ const Filter = ({ filter, change }) => {
           type="text"
           name="filter"
           value={filter}
-          onChange={change}
+          onChange={inputHandler}
         ></input>
       </label>
     </div>
   );
 };
 
-Filter.propTypes = {
-  filter: PropTypes.string.isRequired,
-  change: PropTypes.func.isRequired,
-};
+//Filter.propTypes = {
+//  filter: PropTypes.string.isRequired,
+//  change: PropTypes.func.isRequired,
+//};
 
 export default Filter;
