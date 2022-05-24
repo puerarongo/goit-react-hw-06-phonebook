@@ -7,7 +7,6 @@ import styles from './Form.module.css';
 const Form = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  //const itemsContact = useSelector(state => state.contacts.items);
   const dispatch = useDispatch();
 
   // todo Function

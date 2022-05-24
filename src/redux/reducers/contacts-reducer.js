@@ -20,10 +20,8 @@ const items = createReducer([], {
     //}
     //[...state, payload]
     contactsHandler(state, payload),
-  [contactsDelete.type]: (state, { payload }) => {
-    console.log(payload);
-    state.filter(({ id }) => id !== payload);
-  },
+  [contactsDelete.type]: (state, { payload }) =>
+    state.filter(({ id }) => id !== payload),
 });
 
 const filter = createReducer('', {
