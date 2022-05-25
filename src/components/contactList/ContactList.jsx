@@ -8,6 +8,7 @@ const ContactList = () => {
   const dispatch = useDispatch();
   const itemsContact = useSelector(state => state.contacts.items);
   const filterContact = useSelector(state => state.contacts.filter);
+
   const dataContacts = itemsContact.filter(({ name }) =>
     name.toLowerCase().includes(filterContact.toLowerCase())
   );
