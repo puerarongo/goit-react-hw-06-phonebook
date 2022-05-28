@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { contactsAdd } from 'redux/actions/contacts-actions';
-//import PropTypes from 'prop-types';
 import styles from './Form.module.css';
 
 const Form = () => {
@@ -67,9 +66,5 @@ const Form = () => {
     </div>
   );
 };
-
-//Form.propTypes = {
-//  submit: PropTypes.func.isRequired,
-//};
 
 export default Form;

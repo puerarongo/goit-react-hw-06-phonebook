@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { filtration } from 'redux/actions/contacts-actions';
-//import PropTypes from 'prop-types';
 import styles from './Filter.module.css';
 
 const Filter = () => {
@@ -28,10 +27,5 @@ const Filter = () => {
     </div>
   );
 };
-
-//Filter.propTypes = {
-//  filter: PropTypes.string.isRequired,
-//  change: PropTypes.func.isRequired,
-//};
 
 export default Filter;
